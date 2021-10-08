@@ -26,18 +26,39 @@ body {
     align-items: center;
 }
 
-.wrapper >*{
-
-}
 
 .display{
-    border: 3px solid #cccccc;
+    border: 3px solid #c21f1f;
+    display: flex;
+
 }
 
 .output{
+    font-size: 40px;
+    width: 333px;
+    height: 40px;
     flex: 1 1 100%;
+    text-align: right;
+    
 }
 
 .keypad{
     border: 3px solid black;
+    display:flex;
+    flex-direction: column;
+    gap: 0.1em;
+}
+
+.keypad > *{
+    display: flex;
+    gap: 0.2em;
+}
+
+button {
+    height: 60px;
+    width: 80px;
+}
+
+.zero{
+    flex-grow: 2;
 }
