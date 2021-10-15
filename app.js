@@ -3,7 +3,7 @@ let displayValue = "";
 let firstValue = "";
 let secondValue = "";
 let operator = "";
-let equalBtnPressed = false;
+let operatorBtnPressed = false;
 const output = document.querySelector('.output');
 const btn0 = document.querySelector('.n0');
 const btn1 = document.querySelector('.n1');
@@ -44,8 +44,22 @@ function operate(a, operator, b){
         case "add":
             displayValue = add(Number(a), Number(b));
             setDisplayValue();
-            // storeFirstValue();
-            // clearSecondValue();
+            break;
+
+        case "sub":
+            displayValue = subtract(Number(a), Number(b));
+            setDisplayValue();
+            break;
+
+        case "mul":
+            displayValue = multiply(Number(a), Number(b));
+            setDisplayValue();
+            break;
+
+        case "div":
+            displayValue = divide(Number(a), Number(b));
+            setDisplayValue();
+            break;
             
     }    
     
@@ -101,24 +115,83 @@ function setDisplayValue(){
 
 // OPERATORS
 addBtn.addEventListener('click', function(){
-    operator += "add"
-    storeFirstValue();
-    clearDisplayValue();
+    if(operatorCount === 0){
+        operator += "add"
+        storeFirstValue();
+        clearDisplayValue();
+        incrementOperatorCount();
+    }
+    else if(operatorCount === 1){
+        clearSecondValue();
+        storeSecondValue();
+        operate(firstValue, operator, secondValue);
+        clearFirstValue();
+        storeFirstValue();
+        operatorBtnPressed = true;
+        resetOperatorCount();
+        clearOperator();
+    }
+    
 
     
 });
 subtractBtn.addEventListener('click', function(){
-    operator += "sub";
+    if(operatorCount === 0){
+        operator += "sub"
+        storeFirstValue();
+        clearDisplayValue();
+        incrementOperatorCount();
+    }
+    else if(operatorCount === 1){
+        clearSecondValue();
+        storeSecondValue();
+        operate(firstValue, operator, secondValue);
+        clearFirstValue();
+        storeFirstValue();
+        operatorBtnPressed = true;
+        resetOperatorCount();
+        clearOperator();
+    }
     
     
 });
 multiplyBtn.addEventListener('click', function(){
-    operator += "mul";
+    if(operatorCount === 0){
+        operator += "mul"
+        storeFirstValue();
+        clearDisplayValue();
+        incrementOperatorCount();
+    }
+    else if(operatorCount === 1){
+        clearSecondValue();
+        storeSecondValue();
+        operate(firstValue, operator, secondValue);
+        clearFirstValue();
+        storeFirstValue();
+        operatorBtnPressed = true;
+        resetOperatorCount();
+        clearOperator();
+    }
     
     
 });
 divideBtn.addEventListener('click', function(){
-    operator += "div";
+    if(operatorCount === 0){
+        operator += "div"
+        storeFirstValue();
+        clearDisplayValue();
+        incrementOperatorCount();
+    }
+    else if(operatorCount === 1){
+        clearSecondValue();
+        storeSecondValue();
+        operate(firstValue, operator, secondValue);
+        clearFirstValue();
+        storeFirstValue();
+        operatorBtnPressed = true;
+        resetOperatorCount();
+        clearOperator();
+    }
     
     
 });
@@ -127,15 +200,16 @@ equalBtn.addEventListener('click', function(){
     operate(firstValue, operator, secondValue);
     clearFirstValue();
     clearSecondValue();
-    equalBtnPressed = true;
+    operatorBtnPressed = true;
     clearOperator();
+    resetOperatorCount();
     
 });
 
 // DIGITS
 btn0.addEventListener('click', function(){
-   if(equalBtnPressed) {
-       equalBtnPressed = false;
+   if(operatorBtnPressed) {
+       operatorBtnPressed = false;
        clearDisplayValue();
    }
     displayValue += "0";
@@ -144,8 +218,8 @@ btn0.addEventListener('click', function(){
 });
 
 btn1.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "1";
@@ -154,8 +228,8 @@ btn1.addEventListener('click', function(){
 });
 
 btn2.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "2";
@@ -164,8 +238,8 @@ btn2.addEventListener('click', function(){
 });
 
 btn3.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "3";
@@ -173,8 +247,8 @@ btn3.addEventListener('click', function(){
 });
 
 btn4.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "4";
@@ -182,8 +256,8 @@ btn4.addEventListener('click', function(){
 });
 
 btn5.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "5";
@@ -191,8 +265,8 @@ btn5.addEventListener('click', function(){
 });
 
 btn6.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "6";
@@ -200,8 +274,8 @@ btn6.addEventListener('click', function(){
 });
 
 btn7.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "7";
@@ -209,8 +283,8 @@ btn7.addEventListener('click', function(){
 });
 
 btn8.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "8";
@@ -218,8 +292,8 @@ btn8.addEventListener('click', function(){
 });
 
 btn9.addEventListener('click', function(){
-    if(equalBtnPressed) {
-        equalBtnPressed = false;
+    if(operatorBtnPressed) {
+        operatorBtnPressed = false;
         clearDisplayValue();
     }
     displayValue += "9";
